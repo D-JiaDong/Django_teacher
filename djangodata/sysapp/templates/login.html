@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" /> <!-- /static/style.css -->
+    <script type="text/javascript" src="{% static 'js.js' %}"></script>
+</head>
+<body>
+<table>
+    <form action="/slogin/" method="post">
+    <tr>
+        <td>用户名：</td> <td><input type="text" name="userName" value="{{ request.COOKIES.userName }}" /></td>
+    </tr>
+      <tr>
+        <td>密码：</td> <td><input type="password" name="userPwd" value="{{ request.COOKIES.userPwd }}" /></td>
+    </tr>
+      <tr>
+        <td></td> <td><input type="submit" value="登录"/></td>
+    </tr>
+    </form>
+</table>
+<br>
+<a href="/restlink/1/18/">rest</a>
+<img src="/static/img/timg.jpg" />
+<a href="/linkto/?userId=1&age=18">点我</a>
+欢迎来到Django学习时间！！！！！！
+</body>
+</html>

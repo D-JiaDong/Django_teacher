@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改</title>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+
+<div style="horiz-align: center;width: 100%;" align="center">
+    <form action="/userlist/" method="post" enctype="multipart/form-data" name="regForm">
+        <input type="hidden" name="userId" value="{{uUser.userid}}"/>
+        <input type="hidden" name="opr" value="submitUpdate"/>
+        <table>
+            <caption>
+                {% if success == 0 %}
+                    修改失败
+                {% endif %}
+            </caption>
+            <tr align="center">
+                <td colspan="2"><h2>修改用户</h2></td>
+            </tr>
+            <tr>
+                <td>用户名：</td>
+                <td><input type="text" name="userName" readonly="readonly" value="{{uUser.username}}"/> </td>
+            </tr>
+            <tr>
+                <td>手机号：</td>
+                <td><input type="text" name="userPhone" value="{{uUser.userphone}}"/></td>
+            </tr>
+             <tr>
+                <td>个人照片：</td>
+                 <td>
+                     <img src="{{uUser.userpic}}" width="120" height="160"><br>
+                     <input type="file" name="userPic"/>
+                </td>
+            </tr>
+             <tr>
+                <td>个人介绍</td>
+                 <td>
+                 <textarea name="userIntro" cols="60" rows="10">{{uUser.userintro}}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                 <td>
+                    <input type="reset" value="取消" /><input type="submit" value="修改" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

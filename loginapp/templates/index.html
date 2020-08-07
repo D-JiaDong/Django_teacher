@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+<table>
+    <form action="/" method="post">
+    <tr>
+        <td>用户名：</td> <td><input type="text" name="userName" value="{{ request.COOKIES.userName }}" /></td>
+    </tr>
+      <tr>
+        <td>密码：</td> <td><input type="password" name="userPwd" value="{{ request.COOKIES.userPwd }}" /></td>
+    </tr>
+      <tr>
+        <td></td> <td><input type="submit" value="登录"/></td>
+    </tr>
+    </form>
+</table>
+</body>
+</html>

@@ -1,0 +1,154 @@
+{% include 'admin/header.html' %}
+
+{% include 'admin/left.html' %}
+{% include 'admin/topbar.html' %}
+    <script type="text/javascript">
+        function changePage(page, currentPage, totalPage) {
+
+            if(page == 'pre'){
+                if(currentPage > 1){
+                    document.userForm.currentPage.value = currentPage - 1
+                }else{
+                   document.userForm.currentPage.value = 1
+                }
+            }else if(page == 'next'){
+                if(currentPage < totalPage){
+                    document.userForm.currentPage.value = currentPage + 1
+                }else{
+                    document.userForm.currentPage.value = totalPage
+                }
+            }else{
+                document.userForm.currentPage.value = page
+            }
+            document.userForm.submit()
+        }
+        function delUser(userId){
+            document.userForm.userId.value = userId
+            document.userForm.opr.value = 'delUser'
+            document.userForm.submit()
+        }
+        function updateUser(userId){
+            document.userForm.userId.value = userId
+            document.userForm.opr.value = 'update'
+            document.userForm.submit()
+        }
+        function clearSearch() {
+            document.userForm.userName.value = ""
+            document.userForm.userPhone.value = ""
+            document.userForm.userState.value = ""
+        }
+    </script>
+    <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18">博客分类管理</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">博客管理</a></li>
+                                        <li class="breadcrumb-item active">博客分类管理</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    <div class="row">
+                        <div class="col-12">
+                             <div class="card">
+                                <div class="card-body">
+                                     <form action="/userlist/" method="post" name="userForm" class="form-inline">
+                                    <div >
+                                        用户名:<input name="userName" type="text" value="{{ params.userName }}"/>
+                                        手机号:<input name="userPhone" type="text" value="{{ params.userPhone }}"/>
+                                        用户状态:<input name="userState" type="text" value="{{ params.userState }}"/>
+                                        <input type="button" value="清除" onclick="clearSearch()" />
+                                        <input type="submit" value="查询" />
+                                        <input type="hidden" name="currentPage" value="{{ params.currentPage }}"/>
+                                        <input type="hidden" name="userId"/>
+                                        <input type="hidden" name="opr" value="search"/>
+                                    </div>
+                                    <table class="table activate-select dt-responsive nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>选项</th>
+                                                <th>用户ID</th>
+                                                <th>用户名</th>
+                                                <th>用户手机号</th>
+                                                <th>用户状态</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for item in userList %}
+                                            <tr>
+                                                <td></td>
+                                                <td>{{ item.userid }}</td>
+                                                <td>{{ item.username }}</td>
+                                                <td>{{ item.userphone }}</td>
+                                                <td>{{ item.userstate }}</td>
+                                                <td>
+                                                    <a href="javascript:updateUser({{ item.userid }})">修改</a>
+                                                    <a href="javascript:delUser({{ item.userid }})">删除</a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr align="right">
+                                                <td colspan="6">
+                                                   总共有{{params.counts}}条 总共有{{params.totalPage}}页
+                                                   当前第{{params.currentPage}}页
+                                                    <a href="javascript:changePage(1, {{ params.currentPage }}, {{params.totalPage}})" >首页</a>
+                                                    <a href="javascript:changePage('pre', {{ params.currentPage }}, {{params.totalPage}})" >上一页</a>
+                                                    <a href="javascript:changePage('next', {{ params.currentPage }}, {{params.totalPage}})" >下一页</a>
+                                                    <a href="javascript:changePage({{params.totalPage}}, {{ params.currentPage }}, {{params.totalPage}})">尾页</a>
+                                                    <select name="pageSize">
+                                                        <option value="10"  {% if params.pageSize == 10 %} selected {% endif %}>10</option>
+                                                        <option value="20"  {% if params.pageSize == 20 %} selected {% endif %}>20</option>
+                                                        <option value="50"  {% if params.pageSize == 50 %} selected {% endif %} >50</option>
+                                                        <option value="100" {% if params.pageSize == 100 %} selected {% endif %} >100</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                     </form>
+                                </div> <!-- end card body-->
+                            </div> <!-- end card -->
+                        </div><!-- end col-->
+                    </div>
+                    <!-- end row-->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            2020 © Opatix.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-right d-none d-sm-block">
+                                Design & Develop by Myra
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- end main content-->
+
+{% include 'admin/bottom.html' %}
+<script type="text/javascript" src="/static/blogclass.js" ></script>

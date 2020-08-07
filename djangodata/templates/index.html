@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+首页&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/login/">登录</a>
+&nbsp;
+<a href="/newuser/">注册</a>
+{% if request.session.user  %}
+<a href="/userlist/">用户管理</a>
+<a href="/goclasslist/">类别管理</a>
+<a href="/gobloglist/">博客管理</a>
+<img src="{{ request.session.user.userPic }}" />
+{% endif %}
+</body>
+</html>

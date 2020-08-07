@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <script type="text/javascript" src="/static/js/jquery-3.2.1.min.js" ></script>
+    <script type="text/javascript" src="/static/user.js" ></script>
+</head>
+<body>
+
+<div style="horiz-align: center;width: 100%;" align="center">
+    <form action="/regnewuser/" method="post" enctype="multipart/form-data" name="regForm">
+        <table>
+            <caption>
+                {% if success == 0 %}
+                    注册失败
+                {% endif %}
+            </caption>
+            <tr align="center">
+                <td colspan="2"><h2>用户注册</h2></td>
+            </tr>
+            <tr>
+                <td>用户名：</td>
+                <td><input type="text" name="userName" onblur="checkUserName()" /> </td>
+            </tr>
+             <tr>
+                <td>密码：</td>
+                 <td><input type="password" name="userPwd" /></td>
+            </tr>
+             <tr>
+                <td>重复密码：</td>
+                 <td><input type="password" name="reUserPwd" /></td>
+            </tr>
+            <tr>
+                <td>手机号：</td>
+                <td><input type="text" name="userPhone" /></td>
+            </tr>
+             <tr>
+                <td>个人照片：</td>
+                 <td>
+                     <img src="/static/img/timg.jpg" width="120" height="160"><br>
+                     <input type="file" name="userPic"/>
+                </td>
+            </tr>
+             <tr>
+                <td>个人介绍</td>
+                 <td>
+                 <textarea name="userIntro" cols="60" rows="10"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                 <td>
+                    <input type="reset" value="取消" /><input type="submit" value="提交" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

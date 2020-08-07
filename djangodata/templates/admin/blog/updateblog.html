@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改博客</title>
+    <script type="text/javascript" src="/static/js/jquery-3.2.1.min.js" ></script>
+    <script type="text/javascript" src="/static/bootstrap/js/bootstrap.js" ></script>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css" />
+</head>
+<body>
+<div style="horiz-align: center;width: 100%;" >
+    <form name="blogForm" action="#" >
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                   <input type="text" name="blogTitle"  class="form-control" placeholder="标题"/>
+            </div>
+            <script type="text/javascript" src="/static/ckeditor/ckeditor.js" ></script>
+            <div class="form-group">
+                   <textarea  class="form-control" name="blogContent" id="blogContent" ></textarea>
+                   <script type="text/javascript">
+                        var blogEditor = CKEDITOR.replace('blogContent',{filebrowserUploadUrl : '/upload/?Type=File',
+                        filebrowserImageUploadUrl : '/upload/?Type=Image',
+                        filebrowserFlashUploadUrl : '/upload/?Type=Flash'});
+			       </script>
+            </div>
+             <div class="form-group">
+                 <label for="blogTips"  class="control-label"  style="display: inline;">标签：</label>
+                 <input type="text" name="blogTips"  class="form-control" style="width: 300px;display: inline;"  placeholder="标签"/>
+            </div>
+             <div class="form-group">
+                 <label for="blogClass"  class="control-label" style="display: inline;">分类：</label>
+                 <select   class="form-control" style="width: 300px;display: inline;"  name="blogClassId" id="blogClassId">
+                 </select>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-default pull-left" style="margin-right: 40px;margin-left: 80px;" onclick="">保存草稿</button>
+                <button type="button" class="btn btn-primary" onclick="updateblog(0, 2, 'submitUpdate')">保存修改</button>
+            </div>
+            <input type="hidden" name="currentPage" value="1"/>
+            <input type="hidden" name="blogId" value="{{params.blogId}}"/>
+            <input type="hidden" name="opr" value="search"/>
+        </div>
+    </div>
+    </form>
+</div>
+ <script type="text/javascript" src="/static/updateblog.js" ></script>
+</body>
+</html>

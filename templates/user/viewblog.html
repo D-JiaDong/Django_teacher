@@ -1,0 +1,81 @@
+{% include 'header.html' %}
+{% include 'topbar.html' %}
+
+    <div class="main-content-front">
+
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                             <div class="card">
+                                <div class="card-body">
+                                     <form name="blogForm" action="#" >
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    {{ uBlog.blogtitle}}
+                                                </div>
+                                                <div class="form-group">
+                                                     {{ uBlog.blogcontent}}
+                                                </div>
+                                                 <div class="form-group">
+                                                     <label for="blogTips"  class="control-label"  style="display: inline;">标签：</label>
+                                                     {{ uBlog.blogtips}}
+                                                </div>
+                                                 <div class="form-group">
+                                                     <label for="blogClass"  class="control-label" style="display: inline;">分类：</label>
+                                                     {{ uBlog.classid__classname}}
+                                                </div>
+
+                                                <input type="hidden" name="currentPage" value="1"/>
+                                                <input type="hidden" name="blogId" value="{{params.blogId}}"/>
+                                                <input type="hidden" name="opr" value="search"/>
+                                            </div>
+                                        </div>
+                                        </form>
+                                </div>
+                                   <table class="table activate-select dt-responsive nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="5">相关推荐</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for item in similarList %}
+                                            <tr onclick="javascript:document.location.href='/viewblog/?blogId={{ item.blogid }}';">
+                                                <td>{{ item.blogtitle }}</td>
+                                                <td>{{ item.blogsummary }}</td>
+                                                <td>{{ item.blogtips }}</td>
+                                                <td>{{ item.classid__classname }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                 <!-- end card body-->
+                            </div> <!-- end card -->
+                        </div><!-- end col-->
+                    </div>
+                    <!-- end row-->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            2020 © Opatix.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-right d-none d-sm-block">
+                                Design & Develop by Myra
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- end main content-->
+{% include 'bottom.html' %}

@@ -1,0 +1,96 @@
+{% include 'admin/header.html' %}
+
+{% include 'admin/left.html' %}
+{% include 'admin/topbar.html' %}
+
+    <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18">写博客</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">博客管理</a></li>
+                                        <li class="breadcrumb-item active">写博客</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    <div class="row">
+                        <div class="col-12">
+                             <div class="card">
+                                <div class="card-body">
+                                     <form name="blogForm" action="#" >
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                       <input type="text" name="blogTitle"  class="form-control" placeholder="标题"/>
+                                                </div>
+                                                <script type="text/javascript" src="/static/ckeditor/ckeditor.js" ></script>
+                                                <div class="form-group">
+                                                       <textarea  class="form-control" name="blogContent" id="blogContent" ></textarea>
+                                                       <script type="text/javascript">
+                                                            var blogEditor = CKEDITOR.replace('blogContent',{filebrowserUploadUrl : '/upload/?Type=File',
+                                                            filebrowserImageUploadUrl : '/upload/?Type=Image',
+                                                            filebrowserFlashUploadUrl : '/upload/?Type=Flash'});
+                                                       </script>
+                                                </div>
+                                                 <div class="form-group">
+                                                     <label for="blogTips"  class="control-label"  style="display: inline;">标签：</label>
+                                                     <input type="text" name="blogTips"  class="form-control" style="width: 300px;display: inline;"  placeholder="标签"/>
+                                                </div>
+                                                 <div class="form-group">
+                                                     <label for="blogClass"  class="control-label" style="display: inline;">分类：</label>
+                                                     <select   class="form-control" style="width: 300px;display: inline;"  name="blogClassId" id="blogClassId">
+                                                     </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-default pull-left" style="margin-right: 40px;margin-left: 80px;" onclick="">保存草稿</button>
+                                                    <button type="button" class="btn btn-primary" onclick="updateblog(0, 2, 'submitUpdate')">保存修改</button>
+                                                </div>
+                                                <input type="hidden" name="currentPage" value="1"/>
+                                                <input type="hidden" name="blogId" value="{{params.blogId}}"/>
+                                                <input type="hidden" name="opr" value="search"/>
+                                            </div>
+                                        </div>
+                                        </form>
+                                </div> <!-- end card body-->
+                            </div> <!-- end card -->
+                        </div><!-- end col-->
+                    </div>
+                    <!-- end row-->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            2020 © Opatix.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-right d-none d-sm-block">
+                                Design & Develop by Myra
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- end main content-->
+
+{% include 'admin/bottom.html' %}
+<script type="text/javascript" src="/static/updateblog.js" ></script>

@@ -1,0 +1,148 @@
+{% include 'admin/header.html' %}
+
+{% include 'admin/left.html' %}
+{% include 'admin/topbar.html' %}
+
+    <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18">博客分类管理</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">博客管理</a></li>
+                                        <li class="breadcrumb-item active">博客分类管理</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    <div class="row">
+                        <div class="col-12">
+                             <div class="card">
+                                <div class="card-body">
+                                    <form action="#" method="post" name="classForm" class="form-inline">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="form-group" style="display: inline;">
+                                                    <button type="button" class="btn btn-primary btn-sm" style="display: inline;" onclick="javascript:$('#modal-add').modal();">添加</button>
+                                                </div>
+                                                <div class="form-group" style="display: inline;">
+                                                        <label for="className"  class="control-label" style="display: inline;">类别名称:</label>
+                                                       <input type="text" name="className" width="40px;"  class="form-control form-control-sm" style="display: inline;"/>
+                                                </div>
+                                                <div class="form-group" style="display: inline;">
+                                                    <button type="button" class="btn btn-default pull-left btn-sm" style="display: inline;" onclick="clearSearch()">取消</button>
+                                                    <button type="button" class="btn btn-primary btn-sm" style="display: inline;" onclick="blogClass(10, 1, 0, 'search')">查询</button>
+                                                </div>
+                                                <input type="hidden" name="currentPage" value="1"/>
+                                                <input type="hidden" name="classId"/>
+                                                <input type="hidden" name="opr" value="search"/>
+                                            </div>
+                                        </div>
+                                        <table class="table activate-select dt-responsive nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>选项</th>
+                                                    <th>类别ID</th>
+                                                    <th>类别名称</th>
+                                                    <th>状态</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="bodyData">
+                                            </tbody>
+                                            <tfoot id="pageData">
+                                            </tfoot>
+                                        </table>
+                                           <!-- Modal -->
+                                        <div class="modal fade" id="modal-update" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">修改类别信息</h5>
+                                                        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                         <div class="form-group">
+                                                                <label for="cName"  class="control-label">类别名称：</label>
+                                                               <input type="text" name="cName"  class="form-control"/>
+                                                             </div>
+                                                              <div class="form-group">
+                                                                    <label for="cState"  class="control-label">类别状态：</label>
+                                                                    <input class="form-control" type="radio" name="cState" value="1">显示&nbsp;&nbsp;
+                                                                    <input class="form-control" type="radio" name="cState" value="2">不显示&nbsp;
+                                                              </div>
+                                                              <input name="cId" type="hidden" />
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">取消</button>
+                                                        <button type="button" class="btn btn-primary waves-effect waves-light" onclick="blogClass(10, 0, 0, 'submitUpdate')">保存</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div class="modal fade" id="modal-add" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">添加类别信息</h5>
+                                                        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label for="aName"  class="control-label">类别名称:</label>
+                                                                <input type="text" name="aName"  class="form-control"/>
+                                                             </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">取消</button>
+                                                        <button type="button" class="btn btn-primary waves-effect waves-light" onclick="blogClass(10, 0, 0, 'add')">保存</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div> <!-- end card body-->
+                            </div> <!-- end card -->
+                        </div><!-- end col-->
+                    </div>
+                    <!-- end row-->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            2020 © Opatix.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-right d-none d-sm-block">
+                                Design & Develop by Myra
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- end main content-->
+
+{% include 'admin/bottom.html' %}
+<script type="text/javascript" src="/static/blogclass.js" ></script>
